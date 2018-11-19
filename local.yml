@@ -1,11 +1,13 @@
 - hosts: localhost
   become: true
   tasks:
-          - name: Install packages
-            apt: name={{item}}
-            with_items:
-                    - htop
-                    - git
-                    - vim
-                    - maven
-                    - openvpn
+    - name: Install packages
+      apt:
+        name:
+          - htop
+          - git
+          - vim
+          - maven
+          - openvpn
+        state: present
+        autoclean: yes
