@@ -1,0 +1,11 @@
+- name: Install packages
+  apt:
+    name:
+      - htop
+      - git
+      - vim
+      - maven
+      - openvpn
+      - python3
+    state: present
+    autoclean: yes

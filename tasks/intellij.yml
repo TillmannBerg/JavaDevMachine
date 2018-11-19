@@ -1,0 +1,6 @@
+- name: Download latest IntelliJ
+  unarchive:
+    dest: /opt/
+    src: https://download.jetbrains.com/product?code=IIC&latest&distribution=linux
+    remote_src: yes
+    list_files: yes
