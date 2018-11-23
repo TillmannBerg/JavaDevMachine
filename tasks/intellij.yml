@@ -4,3 +4,16 @@
     src: https://download.jetbrains.com/product?code=IIC&latest&distribution=linux
     remote_src: yes
     list_files: yes
+  register: intellij_archive_contents
+
+- name: Link most recent version
+  file:
+    src: intellij_archive_contents.files[0].split('/')[0]
+    dest: /opt/intellij
+    state: link
+
+- name: Create IntelliJ Desktop icon
+  become: false
+  copy:
+    src: tasks/files/intellij.desktop
+    dest: "{{ ansible_env.HOME }}/.local/share-applications/"   
