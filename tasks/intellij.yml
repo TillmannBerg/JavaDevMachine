@@ -16,4 +16,4 @@
   become: false
   copy:
     src: tasks/files/intellij.desktop
-    dest: "{{ ansible_env.HOME }}/.local/share-applications/"   
+    dest: "{{ ansible_env.HOME }}/.local/share-applications/"  

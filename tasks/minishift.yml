@@ -5,9 +5,13 @@
     append: yes
 
 - name: Install KVM driver binary
+  become: false
   get_url:
     url: https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-ubuntu16.04
     dest: /usr/local/bin/docker-machine-driver-kvm
+    owner: "{{ ansible_env.SUDO_USER }}"
+    group: "{{ ansible_env.SUDO_USER }}"
+    mode: u=rx,g=rx,o=rx
 
 - name: Start libvirtd service
   service:
@@ -20,3 +24,17 @@
     name: default
     autostart: yes
     state: active
+
+- name: Download MiniShift
+  unarchive:
+    dest: /opt/
+    src: https://github.com/minishift/minishift/releases/download/v1.27.0/minishift-1.27.0-linux-amd64.tgz
+    remote_src: yes
+    list_files: yes
+  register: minishift_archive_contents
+
+- name: Link most recent MiniShift version
+  file:
+    src: "{{ minishift_archive_contents.files[0] }}"
+    dest: /opt/minishift
+    state: link
