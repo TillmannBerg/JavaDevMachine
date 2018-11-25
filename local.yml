@@ -8,3 +8,4 @@
   tasks:
     - include: tasks/packages.yml
     - include: tasks/intellij.yml
+    - include: tasks/zsh.yml

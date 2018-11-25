@@ -7,5 +7,7 @@
       - maven
       - openvpn
       - python3
+      - zsh
+      - fonts-powerline # Fonts for the oh-my-zsh agnoster scheme
     state: present
     autoclean: yes
