@@ -1,0 +1,22 @@
+- name: "Add {{ ansible_env.SUDO_USER }} to libvirt group"
+  user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    groups: libvirt
+    append: yes
+
+- name: Install KVM driver binary
+  get_url:
+    url: https://github.com/dhiltgen/docker-machine-kvm/releases/download/v0.10.0/docker-machine-driver-kvm-ubuntu16.04
+    dest: /usr/local/bin/docker-machine-driver-kvm
+
+- name: Start libvirtd service
+  service:
+    enabled: yes
+    name: libvirtd
+    state: started
+
+- name: Start libvirt default network
+  virt_net:
+    name: default
+    autostart: yes
+    state: active

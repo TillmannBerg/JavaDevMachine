@@ -9,5 +9,11 @@
       - python3
       - zsh
       - fonts-powerline # Fonts for the oh-my-zsh agnoster scheme
+      # Packages for KVM and MiniShift
+      - qemu-kvm
+      - libvirt-daemon
+      - libvirt-daemon-system
+      - python-libvirt # Required for Ansible virt_net module
+      - python-lxml    # Required for Ansible virt_net module
     state: present
     autoclean: yes
